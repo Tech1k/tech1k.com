@@ -1,0 +1,5 @@
+User-agent: *
+
+Disallow: /404
+
+Sitemap: https://tech1k.com/sitemap.xml
