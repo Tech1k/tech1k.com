@@ -29,6 +29,80 @@ a:visited {
 	font-size: 18px;
 }
 
+.aligned {
+    display: flex;
+    align-items: center;
+}
+.name_text {
+    padding: 10px;
+}
+.linkicon {
+    padding-right: 5px;
+}
+@media (max-width: 600px) {
+    .aligned {
+        flex-direction: column;
+        align-items: flex-start;
+        flex-shrink: 0;
+    }
+    .aligned img {
+        margin-bottom: 0px!important;
+    }
+    .name_text {
+        padding: 0px!important;
+    }
+    .mainimg {
+        width: 6.5rem !important;
+    }
+    .linkicons {
+        font-size: 36px !important;
+    }
+}
+
+/* Icon border */
+.neon-ring {
+    position: relative;
+    width: auto;
+    height: auto;
+    border-radius: 50%;
+    display: inline-block;
+    background: radial-gradient(circle, rgba(255,0,204,0.3), rgba(51,51,153,0.2));
+}
+
+.neon-ring::before {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: -7px;
+    right: -7px;
+    bottom: -7px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #ff00cc, #3939bc, #ff00cc);
+    z-index: 0;
+    filter: blur(7px);
+    opacity: 0.9;
+    animation: spin 8s linear infinite;
+}
+
+.neon-ring img {
+    width: auto;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
 @media (max-width: 992px) {
 	#main {
 		width: 85%;
