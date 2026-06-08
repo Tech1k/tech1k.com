@@ -1,8 +1,9 @@
 @font-face {
   font-family: 'Inter';
-  src: url('/assets/fonts/inter.ttf') format('truetype');
+  src: url('/assets/fonts/inter.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 body {
@@ -13,20 +14,33 @@ body {
 
 a {
     color: lightblue;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
 a:visited {
-    color: darkcyan;
+    color: #4ec9c9;
+}
+
+.maintext a:hover {
+    color: #cfe8ff;
+    text-shadow: 0 0 6px rgba(173, 216, 230, 0.35);
 }
 
 #main {
 	margin: auto;
 	width: 50%;
+	animation: fade-up 0.6s ease-out both;
 }
 
-#navlink {
-	margin-right: 10px;
-	font-size: 18px;
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .aligned {
@@ -36,8 +50,24 @@ a:visited {
 .name_text {
     padding: 10px;
 }
+.linkicons {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
 .linkicon {
-    padding-right: 5px;
+    display: inline-flex;
+    margin-right: 4px;
+}
+.linkicon svg {
+    width: 46px;
+    height: 46px;
+    vertical-align: middle;
+    transition: transform 0.2s ease, color 0.2s ease, filter 0.2s ease;
+}
+.linkicon:hover svg {
+    color: #cfe8ff;
+    transform: translateY(-3px) scale(1.12);
+    filter: drop-shadow(0 0 5px rgba(173, 216, 230, 0.4));
 }
 @media (max-width: 600px) {
     .aligned {
@@ -53,9 +83,11 @@ a:visited {
     }
     .mainimg {
         width: 6.5rem !important;
+        height: auto !important;
     }
-    .linkicons {
-        font-size: 36px !important;
+    .linkicon svg {
+        width: 38px;
+        height: 38px;
     }
 }
 
@@ -107,138 +139,21 @@ a:visited {
 	#main {
 		width: 85%;
 	}
-	#navlink {
-		margin-right: auto;
-	}
 }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    width: 65%;
-    margin: 0 auto;
+.tagline {
+    font-size: clamp(1rem, 2.6vw, 1.2rem);
 }
 
-.navbar a {
-    text-decoration: none;
-    font-weight: bold;
-    margin: 0 5px;
-}
-
-.navbar img {
-    max-height: 40px;
-}
-
-.menu-toggle {
-    display: none;
-}
-
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    gap: 5px;
-}
-
-.hamburger div {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-}
-
-.nav-links {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
-
-#curpage {
-    color: rgb(50, 200, 200) !important;
-    text-decoration: underline;
-}
-
-#listlink {
+.listlink {
     margin-bottom: 8px;
 }
 
-/* Full/desktop viewport */
-@media (min-width: 1092px) {
-    .navbar {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .navbar-content {
-        width: 75%;
-        margin: 0 auto;
-    }
-
-    .nav-links {
-        display: flex;
-        gap: 15px;
-        align-items: center;
-    }
-}
-
-/* Medium/tablet viewport */
-@media (max-width: 1091px) and (min-width: 621px) {
-    .navbar {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .navbar-content {
-        width: 75%;
-        margin: 0 auto;
-    }
-
-    .nav-links {
-        display: flex;
-        gap: 15px;
-        flex-direction: row;
-        margin-top: 10px;
-        align-items: center;
-    }
-
-    .hamburger {
-        display: none;
-    }
-}
-
-/* Mobile viewport */
-@media (max-width: 620px) {
-    .navbar {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        width: 85%;
-    }
-
-    .navbar a {
-        margin: 10px 0;
-    }
-
-    .hamburger {
-        display: flex;
-        margin-left: 10px;
-    }
-
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        align-items: center;
-        margin-top: 10px;
-        padding: 0;
-    }
-
-    .menu-toggle:checked + .hamburger + .nav-links {
-        display: flex;
-    }
-
-    .navbar a {
-        font-size: 14px;
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
     }
 }
