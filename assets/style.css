@@ -65,7 +65,7 @@ code {
     padding: 2px 6px;
     border-radius: 5px;
     font-size: 0.9em;
-    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 /* Layout */
@@ -87,6 +87,8 @@ code {
 #main > *:nth-child(3) { animation-delay: 0.25s; }
 #main > *:nth-child(4) { animation-delay: 0.35s; }
 #main > *:nth-child(5) { animation-delay: 0.45s; }
+#main > *:nth-child(6) { animation-delay: 0.55s; }
+#main > *:nth-child(7) { animation-delay: 0.65s; }
 
 @keyframes rise {
     from {
@@ -165,13 +167,19 @@ code {
     margin: 28px 0;
 }
 
+.notice {
+    margin: 0 0 28px;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+}
+
 /* Contact panel */
 .panel {
     background: var(--bg-soft);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 20px 22px;
-    margin: 28px 0;
+    margin: 28px 0 14px;
 }
 
 .field + .field {
@@ -218,6 +226,22 @@ code {
 
 .site-desc {
     color: var(--text-dim);
+}
+
+.colophon {
+    margin-top: 36px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--text-dim);
+}
+
+.colophon a {
+    color: var(--text-dim);
+}
+
+.colophon a:hover {
+    color: var(--link-hover);
 }
 
 /* 404 page */
@@ -360,5 +384,53 @@ code {
     }
     #main > * {
         opacity: 1 !important;
+    }
+}
+
+/* Print: the dark on-screen theme is illegible on paper, so invert for print */
+@media print {
+    body {
+        background: #fff;
+        color: #111;
+    }
+    #main {
+        max-width: none;
+        width: 100%;
+        padding: 0;
+    }
+    #main > * {
+        opacity: 1 !important;
+        animation: none !important;
+    }
+    .name, .name-accent {
+        color: #111;
+    }
+    .tagline, .field-label, .site-desc {
+        color: #444;
+    }
+    a {
+        color: #00339a;
+        text-decoration: underline;
+        text-shadow: none;
+    }
+    .neon-ring::before {
+        display: none;
+    }
+    .panel {
+        background: #fff;
+        border-color: #999;
+    }
+    .site-list li {
+        border-color: #ccc;
+    }
+    .section-title {
+        border-color: #999;
+    }
+    /* Expose link targets on paper */
+    .bio a[href^="http"]::after,
+    .site-list a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.85em;
+        color: #555;
     }
 }
