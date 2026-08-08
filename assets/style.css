@@ -205,6 +205,24 @@ code {
     border-bottom: 1px solid var(--border);
 }
 
+.site-group {
+    margin-top: 20px;
+}
+
+.site-group:first-of-type {
+    margin-top: 10px;
+}
+
+.site-group-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+}
+
 .site-list {
     list-style: none;
     margin: 0;
@@ -212,12 +230,7 @@ code {
 }
 
 .site-list li {
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border);
-}
-
-.site-list li:last-child {
-    border-bottom: none;
+    padding: 5px 0;
 }
 
 .site-name {
